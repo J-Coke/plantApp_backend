@@ -72,5 +72,13 @@ describe("/api/plants", () => {
           });
         });
     });
+    test("status 404: responds with a message path not found", () => {
+      return request(app)
+        .get("/api/not_a_path")
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.message).toBe("path not found");
+        });
+    });
   });
 });
