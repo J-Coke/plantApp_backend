@@ -4,6 +4,7 @@ exports.postNewUser = (req, res, next) => {
 	const newUser = req.body;
 	insertNewUser(newUser)
 		.then((addedUser) => {
+			console.log(addedUser.status);
 			res.status(201).send(addedUser);
 		})
 		.catch(next);

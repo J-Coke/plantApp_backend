@@ -3,7 +3,6 @@ const database = require("./connection");
 const seed = async (data) => {
 	const { plantData, badgeData, userData } = data;
 	const db = await database.run();
-	// await db.dropDatabase();
 	await db.dropCollection("users");
 	await db.dropCollection("badges");
 	await db.dropCollection("plants");
