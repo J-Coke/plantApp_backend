@@ -1,0 +1,27 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es2021": true
+	},
+	"extends": ["eslint:recommended", "prettier"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12
+	},
+	"rules": {
+		"indent": ["error", 4],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+
+		// override configuration set by extending "eslint:recommended"
+		"no-empty": "warn",
+		"no-cond-assign": ["error", "always"],
+
+		// disable rules from base configurations
+		"for-direction": "off"
+	}
+}
