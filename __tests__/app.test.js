@@ -17,6 +17,7 @@ describe("errors for whole app", () => {
 			.get("/sjhfjgsjgfjsg")
 			.expect(404)
 			.then(({ body }) => {
+				console.log(body);
 				expect(body.message).toBe("path not found");
 			});
 	});
