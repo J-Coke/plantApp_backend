@@ -142,5 +142,13 @@ describe.only("badge endpoints tests", () => {
           });
         });
     });
+    test("status 404, returns message path not found", () => {
+      return request(app)
+        .get("/api/not_a_path")
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.message).toBe("path not found");
+        });
+    });
   });
 });
