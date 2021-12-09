@@ -16,4 +16,4 @@ const handle500 = (err, req, res, next) => {
 	}
 };
 
-module.exports = { handle400, handle404, handle500 };
+module.exports = { handle400, handle404, handle500, handleCustom400 };
