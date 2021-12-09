@@ -7,7 +7,7 @@ const request = require("supertest");
 beforeEach(async () => {
 	await seed(data);
 });
-afterAll(async () => {
+afterEach(async () => {
 	await database.client.close();
 });
 
@@ -50,6 +50,17 @@ describe("/api/users", () => {
 					expect(body.currentWeek).toHaveLength(1);
 				});
 		});
-		test("post request does not work with objects in the wrong format - returns a 400", () => {});
+		test("post request does not work with objects in the wrong format - returns a 400", () => {
+			return request(app)
+				.post("/api/users")
+				.expect(400)
+				.send({
+					username: "none",
+				})
+				.then(({ body }) => {
+					expect(body.status).toBe(200);
+					expect(body.message).toBe("invalid requests");
+				});
+		});
 	});
 });
