@@ -1,16 +1,15 @@
 {
-  "scripts": {
-    "start": "node server.js",
-    "test" : "jest"
-  },
-  "dependencies": {
-    "@shelf/jest-mongodb": "^2.1.1",
-    "express": "^4.17.1",
-    "mongodb": "^4.2.1",
-    "mongoose": "^6.1.0",
-    "supertest": "^6.1.6"
-  },
-  "devDependencies": {
-    "jest": "^27.4.3"
-  }
+	"scripts": {
+		"start": "node server.js",
+		"test": "jest"
+	},
+	"dependencies": {
+		"@shelf/jest-mongodb": "^2.1.1",
+		"express": "^4.17.1",
+		"mongodb": "^4.2.1",
+		"supertest": "^6.1.6"
+	},
+	"devDependencies": {
+		"jest": "^27.4.3"
+	}
 }
