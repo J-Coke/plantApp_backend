@@ -1,5 +1,5 @@
 const database = require("../db/connection");
-const { validateUser, validateUsername } = require("../utils");
+const { validateUser, validatePlant, validateUsername } = require("../utils");
 exports.insertNewUser = async (newUser) => {
 	await validateUser(newUser);
 	await validateUsername(newUser.username);
@@ -19,7 +19,7 @@ exports.addNewBadge = (user, newBadge) => {
 			.findOne({ username: user })
 			.then((userInfo) => {
 				if (!userInfo) {
-					return Promise.reject({ status: 404, message: "Invalid Request" });
+					return Promise.reject({ status: 404, message: "path not found" });
 				}
 				let badgeData = userInfo.badges;
 				badgeData.push(newBadge);
@@ -41,12 +41,16 @@ exports.addNewBadge = (user, newBadge) => {
 	});
 };
 
-exports.addNewPlant = (user, newPlant) => {
+exports.addNewPlant = async (user, newPlant) => {
+	await validatePlant(newPlant);
 	return database.run().then((db) => {
 		return db
 			.collection("users")
 			.findOne({ username: user })
 			.then((userData) => {
+				if (!userData) {
+					return Promise.reject({ status: 404, message: "path not found" });
+				}
 				let plantData = userData.userPlants;
 				plantData.push(newPlant);
 				return plantData;
