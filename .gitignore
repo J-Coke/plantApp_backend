@@ -1,4 +1,3 @@
 node_modules
 .ENV*
-globalConfig.json
 remoteConnection.js
