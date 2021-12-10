@@ -236,7 +236,42 @@ describe("/api/users", () => {
     });
   });
   describe("api/users get tests", () => {
-    describe("get user info by username", () => {});
+    describe.only("GET /api/users/:username", () => {
+      test("status 200, returns the user object", () => {
+        return request(app)
+          .get("/api/users/georgia123")
+          .expect(200)
+          .then(({ body }) => {
+            expect(typeof body.user).toBe("object");
+            expect(body.user.username).toBe("georgia123");
+            expect(body.user.name).toBe("georgia");
+            expect(body.user.currentWeek).toEqual([
+              { name: "banana", category: "fruit" },
+              { name: "peas", category: "vegetable" },
+            ]);
+            expect(body.user.badges).toEqual([
+              { name: "1 week", img_url: "aighdfjagdha.jpg" },
+            ]);
+            expect(body.user.streak).toEqual({
+              currentStreak: 1,
+              highestStreak: 1,
+            });
+            expect(body.user.userPlants).toEqual([
+              { name: "brussels sprouts", category: "vegetables" },
+              { name: "pumpkin seeds", category: "seeds" },
+              { name: "peas", category: "vegetables" },
+              { name: "squash", category: "vegetables" },
+              { name: "quinoa", category: "grains" },
+              { name: "kale", category: "vegetables" },
+              { name: "green beans", category: "vegetables" },
+              { name: "chia seeds", category: "seeds" },
+              { name: "orange", category: "fruits" },
+              { name: "tangerine", category: "fruits" },
+              { name: "carrot", category: "vegetables" },
+            ]);
+          });
+      });
+    });
   });
 });
 

@@ -3,6 +3,7 @@ const {
   addNewBadge,
   updateStreak,
   addNewPlant,
+  fetchUser,
 } = require("../models/users-model");
 
 exports.postNewUser = (req, res, next) => {
@@ -40,6 +41,16 @@ exports.patchNewPlant = (req, res, next) => {
   addNewPlant(username, newPlant)
     .then((userData) => {
       res.status(201).send(userData);
+    })
+    .catch(next);
+};
+
+exports.getUser = (req, res, next) => {
+  const { username } = req.params;
+  fetchUser(username)
+    .then((user) => {
+      console.log(user);
+      res.status(200).send({ user });
     })
     .catch(next);
 };

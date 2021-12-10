@@ -101,3 +101,9 @@ exports.addNewPlant = (user, newPlant) => {
       });
   });
 };
+
+exports.fetchUser = (username) => {
+  return database.run().then((db) => {
+    return db.collection("users").findOne({ username: username });
+  });
+};
