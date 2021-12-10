@@ -137,6 +137,14 @@ describe("/api/users", () => {
               expect(body.message).toBe("Invalid Request");
             });
         });
+        test("status 400, returns Invalid Request message when incStreak value is not valid", () => {
+          return request(app)
+            .patch("/api/users/georgia123/streak")
+            .send({ incStreak: "not_a_valid_value" })
+            .expect(({ body }) => {
+              expect(body.message).toBe("Invalid Request");
+            });
+        });
       });
     });
   });

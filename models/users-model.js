@@ -50,13 +50,15 @@ exports.updateStreak = (username, incStreak) => {
       .then((userInfo) => {
         let streak = userInfo.streak;
 
-        if (incStreak) {
+        if (incStreak === true) {
           streak.currentStreak++;
           if (streak.currentStreak > streak.highestStreak) {
             streak.highestStreak = streak.currentStreak;
           }
-        } else {
+        } else if (incStreak === false) {
           streak.currentStreak = 0;
+        } else {
+          return Promise.reject({ status: 400, message: "Invalid Request" });
         }
 
         return db
