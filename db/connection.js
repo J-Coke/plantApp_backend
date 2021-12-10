@@ -20,7 +20,10 @@ if (ENV === "development") {
   dbName = "plantApp_TEST";
 } else if (ENV === "production") {
   remoteUri = `mongodb+srv://${username}:$${password}@cluster0.m2mod.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-  client = new MongoClient(uri);
+  client = new MongoClient(remoteUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 }
 console.log(ENV);
 const run = async () => {
