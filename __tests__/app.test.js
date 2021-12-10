@@ -204,6 +204,9 @@ describe("/api/users", () => {
 	describe("api/users get tests", () => {
 		describe("get user info by username", () => {});
 	});
+	describe("api/users get tests", () => {
+		describe("get user info by username", () => {});
+	});
 });
 
 describe("badge endpoints tests", () => {
