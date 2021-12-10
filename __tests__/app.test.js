@@ -145,6 +145,15 @@ describe("/api/users", () => {
               expect(body.message).toBe("Invalid Request");
             });
         });
+        test("status 404, returns path not found when passed a username that is not found", () => {
+          return request(app)
+            .patch("/api/users/not-a-username/streak")
+            .send({ incStreak: true })
+            .expect(404)
+            .then(({ body }) => {
+              expect(body.message).toBe("path not found");
+            });
+        });
       });
     });
   });

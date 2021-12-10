@@ -48,6 +48,10 @@ exports.updateStreak = (username, incStreak) => {
       .collection("users")
       .findOne({ username: username })
       .then((userInfo) => {
+        if (!userInfo) {
+          return Promise.reject({ status: 404, message: "path not found" });
+        }
+
         let streak = userInfo.streak;
 
         if (incStreak === true) {
