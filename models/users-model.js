@@ -130,3 +130,15 @@ exports.updateStreak = (username, incStreak) => {
 			});
 	});
 };
+
+exports.fetchUser = (username) => {
+  return database.run().then((db) => {
+    return db
+      .collection("users")
+      .findOne({ username: username })
+      .then((userInfo) => {
+        if (userInfo) return userInfo;
+        return Promise.reject({ status: 404, message: "path not found" });
+      });
+  });
+};
