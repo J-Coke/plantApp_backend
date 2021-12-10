@@ -10,7 +10,7 @@
 		"test": "jest --watch",
 		"lint": "eslint",
 		"seed" : "node db/run-seed.js",
-		"seed:prod": "NODE_ENV=production MONGODB_URL=$(heroku config:get MONGODB_URL) npm run seed"
+		"seed:prod": "NODE_ENV=production MONGODB_URI=$(heroku config:get MONGODB_URL) npm run seed"
 	},
 	"dependencies": {
 		"@shelf/jest-mongodb": "^2.1.1",
