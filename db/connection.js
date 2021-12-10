@@ -22,8 +22,7 @@ if (ENV === "development") {
     useUnifiedTopology: true,
   });
 }
-console.log(ENV);
-console.log(localUri);
+
 const run = async () => {
   try {
     await client.connect();
