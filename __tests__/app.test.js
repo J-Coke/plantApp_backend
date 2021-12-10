@@ -123,3 +123,32 @@ describe("post request", () => {
 			});
 	});
 });
+
+describe("badge endpoints tests", () => {
+  describe("GET /api/badges", () => {
+    test("status 200, returns an array of all badges", () => {
+      return request(app)
+        .get("/api/badges")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.badges).toHaveLength(6);
+          body.badges.forEach((badge) => {
+            expect(badge).toEqual(
+              expect.objectContaining({
+                name: expect.any(String),
+                img_url: expect.any(String),
+              })
+            );
+          });
+        });
+    });
+    test("status 404, returns message path not found", () => {
+      return request(app)
+        .get("/api/not_a_path")
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.message).toBe("path not found");
+        });
+    });
+  });
+});
