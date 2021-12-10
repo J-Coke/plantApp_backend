@@ -15,7 +15,8 @@ if (ENV === "development") {
 } else if (ENV === "test") {
   dbName = "plantApp_TEST";
 } else if (ENV === "production") {
-  remoteUri = process.env.MONGODB_URI;
+  remoteUri =
+    "mongodb+srv://plantApp:F1naL1Pr0j3CT@cluster0.m2mod.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   client = new MongoClient(remoteUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
