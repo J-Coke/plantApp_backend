@@ -2,6 +2,7 @@ const {
   insertNewUser,
   addNewBadge,
   updateStreak,
+  addNewPlant,
 } = require("../models/users-model");
 
 exports.postNewUser = (req, res, next) => {
@@ -29,6 +30,16 @@ exports.patchStreak = (req, res, next) => {
   updateStreak(username, incStreak)
     .then((streak) => {
       res.status(200).send({ streak });
+    })
+    .catch(next);
+};
+
+exports.patchNewPlant = (req, res, next) => {
+  const newPlant = req.body;
+  const username = req.params.username;
+  addNewPlant(username, newPlant)
+    .then((userData) => {
+      res.status(201).send(userData);
     })
     .catch(next);
 };
