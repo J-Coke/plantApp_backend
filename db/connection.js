@@ -7,6 +7,8 @@ let client = new MongoClient(localUri);
 
 const ENV = process.env.NODE_ENV || "development";
 
+console.log();
+
 let dbName;
 let remoteUri;
 
