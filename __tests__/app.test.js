@@ -22,38 +22,6 @@ describe("errors for whole app", () => {
 	});
 });
 
-describe("/api/users", () => {
-	describe("post request", () => {
-		test("post new user users - 201", () => {
-			return request(app)
-				.post("/api/users")
-				.expect(201)
-				.send({
-					username: "jay",
-					name: "jay",
-					currentWeek: [{ name: "banana", category: "fruit" }],
-					badges: [{ name: "1 week", img_url: "aighdfjagdha.jpg" }],
-					streak: { currentStreak: 1, highestStreak: 1 },
-					userPlants: [
-						{ name: "brussels sprouts", category: "vegetables" },
-						{ name: "pumpkin seeds", category: "seeds" },
-						{ name: "peas", category: "vegetables" },
-					],
-				})
-				.then(({ body }) => {
-					expect(body.username).toBe("jay");
-					expect(body.badges).toEqual([
-						{ name: "1 week", img_url: "aighdfjagdha.jpg" },
-					]);
-					expect(body).toHaveProperty("name");
-					expect(typeof body.streak).toBe("object");
-					expect(body.currentWeek).toHaveLength(1);
-				});
-		});
-		test("post request does not work with objects in the wrong format - returns a 400", () => {});
-	});
-});
-
 describe("/api/plants", () => {
 	describe("GET request", () => {
 		test("status 200: returns an array of all plants", () => {
@@ -83,43 +51,61 @@ describe("/api/plants", () => {
 	});
 });
 
-describe("post request", () => {
-	test("post new user users - 201", () => {
-		return request(app)
-			.post("/api/users")
-			.expect(201)
-			.send({
-				username: "jay",
-				name: "jay",
-				currentWeek: [{ name: "banana", category: "fruit" }],
-				badges: [{ name: "1 week", img_url: "aighdfjagdha.jpg" }],
-				streak: { currentStreak: 1, highestStreak: 1 },
-				userPlants: [
-					{ name: "brussels sprouts", category: "vegetables" },
-					{ name: "pumpkin seeds", category: "seeds" },
-					{ name: "peas", category: "vegetables" },
-				],
-			})
-			.then(({ body }) => {
-				expect(body.username).toBe("jay");
-				expect(body.badges).toEqual([
-					{ name: "1 week", img_url: "aighdfjagdha.jpg" },
-				]);
-				expect(body).toHaveProperty("name");
-				expect(typeof body.streak).toBe("object");
-				expect(body.currentWeek).toHaveLength(1);
-			});
+describe("/api/users", () => {
+	describe("/api/users post requests", () => {
+		test("post new user users - 201", () => {
+			return request(app)
+				.post("/api/users")
+				.expect(201)
+				.send({
+					username: "jay",
+					name: "jay",
+					currentWeek: [{ name: "banana", category: "fruit" }],
+					badges: [{ name: "1 week", img_url: "aighdfjagdha.jpg" }],
+					streak: { currentStreak: 1, highestStreak: 1 },
+					userPlants: [
+						{ name: "brussels sprouts", category: "vegetables" },
+						{ name: "pumpkin seeds", category: "seeds" },
+						{ name: "peas", category: "vegetables" },
+					],
+				})
+				.then(({ body }) => {
+					expect(body.username).toBe("jay");
+					expect(body.badges).toEqual([
+						{ name: "1 week", img_url: "aighdfjagdha.jpg" },
+					]);
+					expect(body).toHaveProperty("name");
+					expect(typeof body.streak).toBe("object");
+					expect(body.currentWeek).toHaveLength(1);
+				});
+		});
+		test("returns 400 when invalid input", () => {
+			return request(app)
+				.post("/api/users")
+				.send({ username: "blah" })
+				.expect(400)
+				.then(({ body }) => {
+					expect(body.message).toBe("Invalid Request");
+				});
+		});
 	});
-	test("post request does not work with objects in the wrong format - returns a 400", () => {
-		return request(app)
-			.post("/api/users")
-			.expect(400)
-			.send({
-				username: "none",
-			})
-			.then(({ body }) => {
-				expect(body.status).toBe(200);
-				expect(body.message).toBe("invalid requests");
+	describe("api/users patch tests", () => {
+		describe("patch new badge tests", () => {
+			test("patches a new badge into the given user's badge array", () => {
+				return request(app)
+					.patch("/api/users/georgia123/badges")
+					.expect(201)
+					.send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
+					.then(({ body }) => {
+						expect(body.badges).toEqual([
+							{ name: "1 week", img_url: "aighdfjagdha.jpg" },
+							{ name: "60 plants", img_url: "ksdhfhs.jpg" },
+						]);
+					});
 			});
+		});
+	});
+	describe("api/users get tests", () => {
+		describe("get user info by username", () => {});
 	});
 });
