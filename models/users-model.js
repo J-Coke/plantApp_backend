@@ -40,6 +40,9 @@ exports.addNewBadge = (user, newBadge) => {
 };
 
 exports.updateStreak = (username, incStreak) => {
+  if (incStreak === undefined) {
+    return Promise.reject({ status: 400, message: "Invalid Request" });
+  }
   return database.run().then((db) => {
     return db
       .collection("users")

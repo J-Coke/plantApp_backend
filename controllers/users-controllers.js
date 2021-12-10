@@ -26,7 +26,9 @@ exports.patchNewBadge = (req, res, next) => {
 exports.patchStreak = (req, res, next) => {
   const { username } = req.params;
   const { incStreak } = req.body;
-  updateStreak(username, incStreak).then((streak) => {
-    res.status(200).send({ streak });
-  });
+  updateStreak(username, incStreak)
+    .then((streak) => {
+      res.status(200).send({ streak });
+    })
+    .catch(next);
 };

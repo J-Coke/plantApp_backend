@@ -128,6 +128,15 @@ describe("/api/users", () => {
               });
             });
         });
+        test("status 400, returns Invalid Request message when body does not include incStreak", () => {
+          return request(app)
+            .patch("/api/users/georgia123/streak")
+            .send({ "not-a-valid-body": true })
+            .expect(400)
+            .then(({ body }) => {
+              expect(body.message).toBe("Invalid Request");
+            });
+        });
       });
     });
   });
