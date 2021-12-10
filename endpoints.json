@@ -1,0 +1,100 @@
+{
+	"GET": {
+		"get /api": {
+			"description": "provides a list of potential endpoints"
+		},
+		"get /api/badges": {
+			"description": "provides an array of all potential badges",
+			"example": [
+				{ "name": "1 week", "img_url": "suhfjs.png" },
+				{ "name": "2 week", "img_url": "jshfjsh.jpg" },
+				{ "name": "30 different plants", "img_url": "msbjsg.png" },
+				{ "name": "60 different plants", "img_url": "984684.jpg" },
+				{ "name": "5 seeds", "img_url": "nsnfhs.jpg" },
+				{ "name": "10 vegetables", "img_url": "9484.jpg" }
+			]
+		},
+		"get /api/plants": {
+			"description": "provides an array of all plants",
+			"example response": [
+				{ "name": "carrot", "category": "vegetables" },
+				{ "name": "barley", "category": "grains" },
+				{ "name": "cucumber", "category": "vegetables" },
+				{ "name": "strawberry", "category": "fruit" }
+			]
+		},
+		"get /api/users/:username": {
+			"description": "allows you to find a user's details by their username"
+		}
+	},
+	"POST": {
+		"post /api/users": {
+			"description": "allows you to create a new user",
+			"example request": {
+				"username": "example123",
+				"name": "john doe",
+				"currentWeek": [{ "name": "banana", "category": "fruit" }],
+				"badges": [],
+				"streak": { "currentStreak": 0, "highestStreak": 0 },
+				"userPlants": []
+			}
+		}
+	},
+	"PATCH": {
+		"patch /api/users/:username/badges": {
+			"description": "allows you to add a badge to a user's badge array, returns the updated user data",
+			"example request": { "name": "60 plants", "img_url": "ksdhfhs.jpg" },
+			"example response": {
+				"username": "georgia123",
+				"name": "georgia",
+				"currentWeek": [
+					{ "name": "banana", "category": "fruit" },
+					{ "name": "peas", "category": "vegetable" }
+				],
+				"badges": [{ "name": "1 week", "img_url": "aighdfjagdha.jpg" }],
+				"streak": { "currentStreak": 1, "highestStreak": 1 },
+				"userPlants": [
+					{ "name": "brussels sprouts", "category": "vegetables" },
+					{ "name": "pumpkin seeds", "category": "seeds" },
+					{ "name": "peas", "category": "vegetables" },
+					{ "name": "squash", "category": "vegetables" },
+					{ "name": "quinoa", "category": "grains" }
+				]
+			}
+		},
+		"patch /api/users/:username/plants": {
+			"description": "adds a plant to a user's weekly total, returns the updated user data",
+			"example request": { " name": "tangerine", "category": "fruits" },
+			"example response": {
+				"username": "georgia123",
+				"name": "georgia",
+				"currentWeek": [
+					{ "name": "banana", "category": "fruit" },
+					{ "name": "peas", "category": "vegetable" }
+				],
+				"badges": [{ "name": "1 week", "img_url": "aighdfjagdha.jpg" }],
+				"streak": { "currentStreak": 1, "highestStreak": 1 },
+				"userPlants": [
+					{ "name": "brussels sprouts", "category": "vegetables" },
+					{ "name": "pumpkin seeds", "category": "seeds" },
+					{ "name": "peas", "category": "vegetables" },
+					{ "name": "squash", "category": "vegetables" },
+					{ "name": "quinoa", "category": "grains" },
+					{ " name": "tangerine", "category": "fruits" }
+				]
+			}
+		},
+		"patch /api/users/:username/streak": {
+			"description": "allows you to update a user's current streak and identifies and updates when they reach their highest streak",
+			"example request": { "incStreak": true },
+			"example response": {
+				"username": "georgia123",
+				"name": "georgia",
+				"currentWeek": [{ "name": "banana", "category": "fruit" }],
+				"badges": [{ "name": "1 week", "img_url": "aighdfjagdha.jpg" }],
+				"streak": { "currentStreak": 2, "highestStreak": 2 },
+				"userPlants": [{ "name": "brussels sprouts", "category": "vegetables" }]
+			}
+		}
+	}
+}
