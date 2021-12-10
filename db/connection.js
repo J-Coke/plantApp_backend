@@ -1,19 +1,29 @@
 const { MongoClient } = require("mongodb");
+const { username, password } = require("../remoteConnection");
 
-const uri = "mongodb://localhost:27017/";
+const localUri = "mongodb://localhost:27017/";
 
-const client = new MongoClient(uri);
+let client = new MongoClient(localUri);
 
 const ENV = process.env.NODE_ENV || "development";
 
+console.log();
+
 let dbName;
+let remoteUri;
 
 if (ENV === "development") {
   dbName = "plantApp_DEV";
-} else {
+} else if (ENV === "test") {
   dbName = "plantApp_TEST";
+} else if (ENV === "production") {
+  remoteUri = `mongodb+srv://${username}:$${password}@cluster0.m2mod.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+  client = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 }
-
+console.log(ENV);
 const run = async () => {
   try {
     await client.connect();
