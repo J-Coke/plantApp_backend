@@ -1,4 +1,10 @@
 {
+	"name" : "plantApp_backend",
+	"description" : "plantApp_backend",
+	"version" : "1.0.0",
+	"engines" : {
+		"node" : "16.7.0"
+	},	
 	"scripts": {
 		"start": "node server.js",
 		"test": "jest --watch",
