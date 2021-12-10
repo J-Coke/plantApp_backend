@@ -6,7 +6,7 @@
 		"node" : "16.7.0"
 	},	
 	"scripts": {
-		"start": "node server.js",
+		"start": "node listen.js",
 		"test": "jest --watch",
 		"lint": "eslint",
 		"seed" : "node db/run-seed.js",

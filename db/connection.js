@@ -7,10 +7,6 @@ let client = new MongoClient(localUri);
 
 const ENV = process.env.NODE_ENV || "development";
 
-if (!process.env.MONGODB_URI) {
-  throw new Error("database not set");
-}
-
 let dbName;
 let remoteUri;
 
@@ -26,6 +22,7 @@ if (ENV === "development") {
   });
 }
 console.log(ENV);
+console.log(localUri);
 const run = async () => {
   try {
     await client.connect();
