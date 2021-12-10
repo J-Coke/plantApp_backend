@@ -1,5 +1,4 @@
 const database = require("./db/connection");
-const { badgeData } = require("./db/test-data");
 const validateUser = async (newUser) => {
 	if (
 		!newUser.name ||
@@ -33,4 +32,10 @@ const validateUsername = async (username) => {
 	});
 };
 
-module.exports = { validateUser, validateUsername };
+const validatePlant = async (newPlant) => {
+	if (!newPlant.name || !newPlant.category) {
+		return Promise.reject({ status: 400, message: "Invalid Request" });
+	}
+};
+
+module.exports = { validateUser, validatePlant, validateUsername };
