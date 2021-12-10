@@ -236,7 +236,7 @@ describe("/api/users", () => {
     });
   });
   describe("api/users get tests", () => {
-    describe.only("GET /api/users/:username", () => {
+    describe("GET /api/users/:username", () => {
       test("status 200, returns the user object", () => {
         return request(app)
           .get("/api/users/georgia123")
@@ -269,6 +269,14 @@ describe("/api/users", () => {
               { name: "tangerine", category: "fruits" },
               { name: "carrot", category: "vegetables" },
             ]);
+          });
+      });
+      test("status 404, returns path not found when passed a username not found", () => {
+        return request(app)
+          .get("/api/users/not-a-username")
+          .expect(404)
+          .then(({ body }) => {
+            expect(body.message).toBe("path not found");
           });
       });
     });
