@@ -116,6 +116,18 @@ describe("/api/users", () => {
               });
             });
         });
+        test("status 200, resets the streak to 0 when passed with incStreak: false, and returns the updated streak object ", () => {
+          return request(app)
+            .patch("/api/users/georgia123/streak")
+            .send({ incStreak: false })
+            .expect(200)
+            .then(({ body }) => {
+              expect(body.streak).toEqual({
+                currentStreak: 0,
+                highestStreak: 1,
+              });
+            });
+        });
       });
     });
   });

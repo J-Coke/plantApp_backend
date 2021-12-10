@@ -46,11 +46,14 @@ exports.updateStreak = (username, incStreak) => {
       .findOne({ username: username })
       .then((userInfo) => {
         let streak = userInfo.streak;
+
         if (incStreak) {
           streak.currentStreak++;
           if (streak.currentStreak > streak.highestStreak) {
             streak.highestStreak = streak.currentStreak;
           }
+        } else {
+          streak.currentStreak = 0;
         }
 
         return db
