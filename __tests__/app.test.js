@@ -126,6 +126,80 @@ describe("/api/users", () => {
     });
   });
   describe("api/users patch tests", () => {
+    describe("patch new badge tests", () => {
+      test("patches a new badge into the given user's badge array", () => {
+        return request(app)
+          .patch("/api/users/georgia123/badges")
+          .expect(201)
+          .send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
+          .then(({ body }) => {
+            expect(body.badges).toEqual([
+              { name: "1 week", img_url: "aighdfjagdha.jpg" },
+              { name: "60 plants", img_url: "ksdhfhs.jpg" },
+            ]);
+          });
+      });
+      test("returns 404 when passed a username which does not exist", () => {
+        return request(app)
+          .patch("/api/users/notausername/badges")
+          .expect(404)
+          .send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
+          .then(({ body }) => {
+            expect(body.message).toBe("path not found");
+          });
+      });
+      test("returns 404 when passed an invalid path", () => {
+        return request(app)
+          .patch("/api/wrong/wrong/wrong")
+          .expect(404)
+          .send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
+          .then(({ body }) => {
+            expect(body.message).toBe("path not found");
+          });
+      });
+    });
+    describe("patch new plant tests", () => {
+      test("returns 201 and posts a new plant to the userPlants array", () => {
+        return request(app)
+          .patch("/api/users/georgia123/plants")
+          .expect(201)
+          .send({ name: "pumpkin", category: "vegetable" })
+          .then(({ body }) => {
+            expect(body.userPlants).toEqual([
+              { name: "brussels sprouts", category: "vegetables" },
+              { name: "pumpkin seeds", category: "seeds" },
+              { name: "peas", category: "vegetables" },
+              { name: "squash", category: "vegetables" },
+              { name: "quinoa", category: "grains" },
+              { name: "kale", category: "vegetables" },
+              { name: "green beans", category: "vegetables" },
+              { name: "chia seeds", category: "seeds" },
+              { name: "orange", category: "fruits" },
+              { name: "tangerine", category: "fruits" },
+              { name: "carrot", category: "vegetables" },
+              { name: "pumpkin", category: "vegetable" },
+            ]);
+          });
+      });
+      test("returns 400 when passed a new plant in the incorrect format", () => {
+        return request(app)
+          .patch("/api/users/georgia123/plants")
+          .expect(400)
+          .send({ incorrect: "format" })
+          .then(({ body }) => {
+            expect(body.message).toBe("Invalid Request");
+          });
+      });
+      test("returns 404 when passed a username which does not exist", () => {
+        return request(app)
+          .patch("/api/notausername/plants")
+          .expect(404)
+          .send({ name: "carrot", category: "vegetable" })
+          .then(({ body }) => {
+            expect(body.message).toBe("path not found");
+          });
+      });
+    });
     describe("PATCH /api/users/:username/streak", () => {
       test("status 200, increments the streak when passed with incStreak: true, and returns the updated streak object ", () => {
         return request(app)
@@ -175,62 +249,6 @@ describe("/api/users", () => {
           .expect(404)
           .then(({ body }) => {
             expect(body.message).toBe("path not found");
-          });
-      });
-    });
-    describe("patch new badge tests", () => {
-      test("patches a new badge into the given user's badge array", () => {
-        return request(app)
-          .patch("/api/users/georgia123/badges")
-          .expect(201)
-          .send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
-          .then(({ body }) => {
-            expect(body.badges).toEqual([
-              { name: "1 week", img_url: "aighdfjagdha.jpg" },
-              { name: "60 plants", img_url: "ksdhfhs.jpg" },
-            ]);
-          });
-      });
-      test("returns 404 when passed a username which does not exist", () => {
-        return request(app)
-          .patch("/api/users/notausername/badges")
-          .expect(404)
-          .send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
-          .then(({ body }) => {
-            expect(body.message).toBe("Invalid Request");
-          });
-      });
-      test("returns 404 when passed an invalid path", () => {
-        return request(app)
-          .patch("/api/wrong/wrong/wrong")
-          .expect(404)
-          .send({ name: "60 plants", img_url: "ksdhfhs.jpg" })
-          .then(({ body }) => {
-            expect(body.message).toBe("path not found");
-          });
-      });
-    });
-    describe("api/users/:username/plants patch requests", () => {
-      test("returns 201 and posts a new plant to the userPlants array", () => {
-        return request(app)
-          .patch("/api/users/georgia123/plants")
-          .expect(201)
-          .send({ name: "pumpkin", category: "vegetable" })
-          .then(({ body }) => {
-            expect(body.userPlants).toEqual([
-              { name: "brussels sprouts", category: "vegetables" },
-              { name: "pumpkin seeds", category: "seeds" },
-              { name: "peas", category: "vegetables" },
-              { name: "squash", category: "vegetables" },
-              { name: "quinoa", category: "grains" },
-              { name: "kale", category: "vegetables" },
-              { name: "green beans", category: "vegetables" },
-              { name: "chia seeds", category: "seeds" },
-              { name: "orange", category: "fruits" },
-              { name: "tangerine", category: "fruits" },
-              { name: "carrot", category: "vegetables" },
-              { name: "pumpkin", category: "vegetable" },
-            ]);
           });
       });
     });
