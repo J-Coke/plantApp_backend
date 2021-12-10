@@ -124,7 +124,7 @@ describe("post request", () => {
   });
 });
 
-describe.only("badge endpoints tests", () => {
+describe("badge endpoints tests", () => {
   describe("GET /api/badges", () => {
     test("status 200, returns an array of all badges", () => {
       return request(app)
