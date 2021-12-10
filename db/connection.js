@@ -7,7 +7,9 @@ let client = new MongoClient(localUri);
 
 const ENV = process.env.NODE_ENV || "development";
 
-console.log();
+if (!process.env.MONGODB_URL) {
+  throw new Error("database not set");
+}
 
 let dbName;
 let remoteUri;
@@ -18,10 +20,7 @@ if (ENV === "development") {
   dbName = "plantApp_TEST";
 } else if (ENV === "production") {
   remoteUri = `mongodb+srv://${username}:$${password}@cluster0.m2mod.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-  client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  client = new MongoClient(uri);
 }
 console.log(ENV);
 const run = async () => {
