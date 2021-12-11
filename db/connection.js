@@ -17,7 +17,7 @@ if (ENV === "development") {
 } else if (ENV === "production") {
   dbName = "plantApp";
   remoteUri =
-    "mongodb+srv://plantApp:F1naL1Pr0j3CT@cluster0.m2mod.mongodb.net/plantApp?retryWrites=true&w=majority";
+    "mongodb+srv://gldrobinson:F1naL1Pr0j3CT@cluster0.m2mod.mongodb.net/plantApp?retryWrites=true&w=majority";
   client = new MongoClient(remoteUri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
