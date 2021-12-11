@@ -1,6 +1,4 @@
 const { MongoClient } = require("mongodb");
-const { username, password } = require("../remoteConnection");
-
 const localUri = "mongodb://localhost:27017/";
 
 let client = new MongoClient(localUri);
