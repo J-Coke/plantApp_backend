@@ -4,6 +4,7 @@ const {
   updateStreak,
   addNewPlant,
   fetchUser,
+  fetchAllUsers,
 } = require("../models/users-model");
 
 exports.postNewUser = (req, res, next) => {
@@ -52,4 +53,10 @@ exports.getUser = (req, res, next) => {
       res.status(200).send({ user });
     })
     .catch(next);
+};
+
+exports.getAllUsers = (req, res, next) => {
+  fetchAllUsers().then((users) => {
+    res.status(200).send({ users });
+  });
 };

@@ -10,6 +10,7 @@
 		"test": "jest --watch",
 		"lint": "eslint",
 		"seed" : "node db/run-seed.js",
+		"createDbs" : "node db/createDb.js",
 		"seed:prod": "NODE_ENV=production MONGODB_URI=$(heroku config:get MONGODB_URI) npm run seed"
 	},
 	"dependencies": {
