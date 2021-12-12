@@ -1,18 +1,28 @@
 {
+	"name" : "plantApp_backend",
+	"description" : "plantApp_backend",
+	"version" : "1.0.0",
+	"engines" : {
+		"node" : "16.7.0"
+	},	
 	"scripts": {
-		"start": "node server.js",
+		"start": "node listen.js",
 		"test": "jest --watch",
-		"lint": "eslint"
+		"lint": "eslint",
+		"seed" : "node db/run-seed.js",
+		"createDbs" : "node db/createDb.js",
+		"seed:prod": "NODE_ENV=production MONGODB_URI=$(heroku config:get MONGODB_URI) npm run seed"
 	},
 	"dependencies": {
-		"@shelf/jest-mongodb": "^2.1.1",
 		"express": "^4.17.1",
 		"mongodb": "^4.2.1",
-		"supertest": "^6.1.6"
+		"dotenv": "^10.0.0"
 	},
 	"devDependencies": {
 		"jest": "^27.4.3",
 		"eslint": "^8.4.0",
-		"eslint-config-prettier": "^8.3.0"
+		"eslint-config-prettier": "^8.3.0",
+		"supertest": "^6.1.6",
+		"@shelf/jest-mongodb": "^2.1.1"
 	}
 }
