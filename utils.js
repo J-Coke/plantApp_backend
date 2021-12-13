@@ -1,8 +1,8 @@
 const database = require("./db/connection");
 const validateUser = async (newUser) => {
 	if (
-		!newUser.name ||
-		typeof newUser.name !== "string" ||
+		!newUser.username ||
+		typeof newUser.username !== "string" ||
 		!newUser.badges ||
 		typeof newUser.badges !== "object" ||
 		!newUser.name ||
