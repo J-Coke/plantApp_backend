@@ -53,13 +53,19 @@ exports.addNewPlant = async (user, newPlant) => {
 				}
 				let plantData = userData.userPlants;
 				let weekData = userData.currentWeek;
-				const filter = plantData.filter(
+				const filterPlant = plantData.filter(
 					(plant) => plant.name !== newPlant.name
 				);
-				if (filter.length === plantData.length) {
+				const filterWeek = weekData.filter(
+					(plant) => plant.name !== newPlant.name
+				);
+				if (filterPlant.length === plantData.length) {
 					plantData.push(newPlant);
 				}
-				weekData.push(newPlant);
+				if (filterWeek.length === weekData.length) {
+					weekData.push(newPlant);
+				} else
+					return Promise.reject({ status: 400, message: "Invalid Request" });
 				return { plantData, weekData };
 			})
 			.then(({ plantData, weekData }) => {
