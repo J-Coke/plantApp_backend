@@ -223,6 +223,15 @@ describe("/api/users", () => {
 						]);
 					});
 			});
+			test("returns 400 when passed a new plant which is already in the current week array", () => {
+				return request(app)
+					.patch("/api/users/georgia123/plants")
+					.expect(400)
+					.send({ name: "banana", category: "fruit" })
+					.then(({ body }) => {
+						expect(body.message).toBe("Invalid Request");
+					});
+			});
 			test("returns 400 when passed a new plant in the incorrect format", () => {
 				return request(app)
 					.patch("/api/users/georgia123/plants")
