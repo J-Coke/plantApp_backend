@@ -3,11 +3,13 @@ const { validateUser, validatePlant, validateUsername } = require("../utils");
 exports.insertNewUser = async (newUser) => {
 	await validateUser(newUser);
 	await validateUsername(newUser.username);
+	newUser.joined = new Date(Date.now());
 	return database.run().then(async (db) => {
 		await db.collection("users").insertOne(newUser);
 		const addedUser = await db
 			.collection("users")
 			.findOne({ username: newUser.username });
+		console.log(addedUser);
 		return addedUser;
 	});
 };
@@ -141,6 +143,17 @@ exports.fetchAllUsers = () => {
 			.toArray()
 			.then((allUsers) => {
 				return allUsers;
+			});
+	});
+};
+
+exports.updateWeek = (username) => {
+	return database.run().then((db) => {
+		return db
+			.collection("users")
+			.updateOne({ username: username }, { $set: { currentWeek: [] } })
+			.then(() => {
+				return db.collection("users").findOne({ username: username });
 			});
 	});
 };

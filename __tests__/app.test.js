@@ -349,7 +349,7 @@ describe("/api/users", () => {
 					});
 			});
 		});
-		describe(" GET /api/users", () => {
+		describe("GET /api/users", () => {
 			test("status 200, returns an array of users", () => {
 				return request(app)
 					.get("/api/users")
@@ -368,6 +368,16 @@ describe("/api/users", () => {
 								})
 							);
 						});
+					});
+			});
+		});
+		describe("PATCH /api/users/:username/currentweek", () => {
+			test("when passed a username it sets the users current week to an empty array", () => {
+				return request(app)
+					.patch("/api/users/georgia123/currentweek")
+					.expect(201)
+					.then(({ body }) => {
+						expect(body.currentWeek).toHaveLength(0);
 					});
 			});
 		});
