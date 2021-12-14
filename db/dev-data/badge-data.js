@@ -12,6 +12,12 @@ const badgeData = [
 		description: "you have eaten 30 different plants for two straight weeks",
 	},
 	{
+		name: "1 month",
+		img_url: "https://i.postimg.cc/5tpZKhbS/lettuce-badge.png",
+		grey_url: "https://i.postimg.cc/ZK4YgSh1/grey-lettuce-badge.png",
+		description: "you have eaten 30 different plants every week for a month",
+	},
+	{
 		name: "30 different plants",
 		img_url: "https://i.postimg.cc/XJGwBsz7/broccoli-badge.png",
 		grey_url: "https://i.postimg.cc/DwNCW7vD/grey-broccoli-badge.png",
@@ -30,6 +36,12 @@ const badgeData = [
 		description: "you have eaten five different types of seeds",
 	},
 	{
+		name: "5 vegetables",
+		img_url: "https://i.postimg.cc/50mmxQBy/mushroom-badge.png",
+		grey_url: "https://i.postimg.cc/JngzHPc2/grey-mushroom-badge.png",
+		description: "you have eaten five different types of vegetable",
+	},
+	{
 		name: "10 vegetables",
 		img_url: "https://i.postimg.cc/P55v86Ls/garlic-badge.png",
 		grey_url: "https://i.postimg.cc/Ls61MPFF/grey-garlic-badge.png",
@@ -45,24 +57,24 @@ const badgeData = [
 		name: "5 grains",
 		img_url: "https://i.postimg.cc/267CGDJH/ice-gem-badge.png",
 		grey_url: "https://i.postimg.cc/fy4yktpL/grey-ice-gem-badge.png",
-		description: "you have eaten five different grains",
+		description: "you have eaten five different types of grains",
+	},
+	{
+		name: "5 fruits",
+		img_url: "https://i.postimg.cc/RFnzy9Kg/lettuce-badge.png",
+		grey_url: "https://i.postimg.cc/bwCcvdR6/grey-lettuce-badge.png",
+		description: "you have eaten five different types of fruit",
 	},
 	{
 		name: "10 fruits",
 		img_url: "https://i.postimg.cc/XYBqbgp5/kiwi-badge.png",
 		grey_url: "https://i.postimg.cc/XNFXmLBy/grey-kiwi-badge.png",
-		description: "you have eaten ten different fruits",
+		description: "you have eaten ten different types of fruit",
 	},
 	{
 		name: "5 herbs and spices",
 		img_url: "https://i.postimg.cc/QMs3yg5h/lemon-badge.png",
 		grey_url: "https://i.postimg.cc/rwhpxY37/grey-lemon-badge.png",
 		description: "you have eaten five different herbs and spices",
-	},
-	{
-		name: "1 month",
-		img_url: "https://i.postimg.cc/5tpZKhbS/lettuce-badge.png",
-		grey_url: "https://i.postimg.cc/ZK4YgSh1/grey-lettuce-badge.png",
-		description: "you have eaten 30 different plants every week for a month",
 	},
 ];
