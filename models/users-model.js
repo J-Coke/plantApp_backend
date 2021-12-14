@@ -144,3 +144,14 @@ exports.fetchAllUsers = () => {
 			});
 	});
 };
+
+exports.updateWeek = (username) => {
+	return database.run().then((db) => {
+		return db
+			.collection("users")
+			.updateOne({ username: username }, { $set: { currentWeek: [] } })
+			.then(() => {
+				return db.collection("users").findOne({ username: username });
+			});
+	});
+};
