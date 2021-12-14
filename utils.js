@@ -38,4 +38,4 @@ const validateUsername = async (username) => {
 // 	}
 // };
 
-module.exports = { validateUser, validatePlant, validateUsername };
+module.exports = { validateUser, validateUsername };
