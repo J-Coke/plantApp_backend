@@ -1205,12 +1205,6 @@ const plantImgData = [
 		img_url:
 			"https://www.edamam.com/food-img/d77/d77cd71e23db9610e70878e3e8d75f4e.jpg",
 	},
-	{
-		name: "sesame seed",
-		category: "seeds",
-		img_url:
-			"https://www.edamam.com/food-img/291/291b355a7a0948716243164427697279.jpg",
-	},
 ];
 
 module.exports = plantData;
