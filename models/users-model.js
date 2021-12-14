@@ -65,7 +65,7 @@ exports.addNewPlant = async (user, newPlant) => {
 				if (filterWeek.length === weekData.length) {
 					weekData.push(newPlant);
 				} else
-					return Promise.reject({ status: 400, message: "Invalid Request" });
+					return Promise.reject({ status: 400, message: "Plant already added to current week" });
 				return { plantData, weekData };
 			})
 			.then(({ plantData, weekData }) => {
