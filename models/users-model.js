@@ -42,7 +42,7 @@ exports.addNewBadge = (user, newBadge) => {
 };
 
 exports.addNewPlant = async (user, newPlant) => {
-	await validatePlant(newPlant);
+	// await validatePlant(newPlant);
 	return database.run().then((db) => {
 		return db
 			.collection("users")

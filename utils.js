@@ -32,10 +32,10 @@ const validateUsername = async (username) => {
 	});
 };
 
-const validatePlant = async (newPlant) => {
-	if (!newPlant.name || !newPlant.category) {
-		return Promise.reject({ status: 400, message: "Plant not passing validation" });
-	}
-};
+// const validatePlant = async (newPlant) => {
+// 	if (!newPlant.name || !newPlant.category) {
+// 		return Promise.reject({ status: 400, message: "Plant not passing validation" });
+// 	}
+// };
 
 module.exports = { validateUser, validatePlant, validateUsername };
