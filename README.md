@@ -1,9 +1,9 @@
 # Rooting For You
-Rooting For You is a React Native mobile application developed for the final project at Northcoders. 
+Rooting For You is a React Native mobile application developed for the final project at Northcoders. A presentaion of the app can be viewed here: https://www.youtube.com/watch?v=ArS2hWDRg6M
 
 This repository is for the backend portion of the project, where we use MongoDB to create the database and create an API for the frontend to use. 
 
-The frontend repository can be found here: https://github.com/gldrobinson/plantApp
+The frontend repository can be found here: https://github.com/J-Coke/plantApp
 
 The backend is hosted on Heroku here: https://plant-app-b-end.herokuapp.com/api
 
@@ -21,7 +21,7 @@ The minimum version of node is 17.2.0
 To view and set up the databases locally and run the test suite, please install MongoDB to your local machine - for more information, please visit [here](https://www.mongodb.com/)
 ### To clone this API, please:
 
-- Fork and clone this repo onto your local machine: https://github.com/gldrobinson/plantApp_backend
+- Fork and clone this repo onto your local machine: https://github.com/J-Coke/plantApp_backend
 - Navigate into the directory, run the file through node.js and install the project dependencies
   ```sh
   npm install
